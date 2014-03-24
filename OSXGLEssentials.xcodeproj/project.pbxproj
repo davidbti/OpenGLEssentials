@@ -26,7 +26,10 @@
 		3A15990711B9DE6C001E7AB5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A15990611B9DE6C001E7AB5 /* QuartzCore.framework */; };
 		3A349C9212CAEA1100B73A51 /* sourceUtil.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A349C9112CAEA1100B73A51 /* sourceUtil.c */; };
 		3A4554AB14BE325400837CC3 /* GLEssentialsGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4554A714BE1FE300837CC3 /* GLEssentialsGLView.m */; };
-		3B92A19818D9F9DF00D3F368 /* cube.c in Sources */ = {isa = PBXBuildFile; fileRef = 3B92A19618D9F9DF00D3F368 /* cube.c */; };
+		3B84BA0A18E0756800E475EF /* objloader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B84BA0618E0756800E475EF /* objloader.cpp */; };
+		3B84BA0B18E0756800E475EF /* vboindexer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B84BA0818E0756800E475EF /* vboindexer.cpp */; };
+		3B84BA1118E07D6200E475EF /* cube.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3B84BA0F18E07D6200E475EF /* cube.obj */; };
+		3B84BA1218E07D6200E475EF /* cube.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B84BA1018E07D6200E475EF /* cube.png */; };
 		3B92A19E18DB3CE000D3F368 /* OpenTriangleRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B92A19D18DB3CE000D3F368 /* OpenTriangleRenderer.m */; };
 		3B92A1A118DB6C9A00D3F368 /* triangle.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3B92A19F18DB6C9A00D3F368 /* triangle.fsh */; };
 		3B92A1A218DB6C9A00D3F368 /* triangle.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 3B92A1A018DB6C9A00D3F368 /* triangle.vsh */; };
@@ -43,8 +46,7 @@
 		3B92A1CE18DCC3DB00D3F368 /* OpenTexture1Renderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3B92A1CD18DCC3DB00D3F368 /* OpenTexture1Renderer.mm */; };
 		3B92A1D118DCC6F100D3F368 /* texture1.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3B92A1CF18DCC6F100D3F368 /* texture1.fsh */; };
 		3B92A1D218DCC6F100D3F368 /* texture1.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 3B92A1D018DCC6F100D3F368 /* texture1.vsh */; };
-		3BA6730F18D8D77B008D30D0 /* cube.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3BA6730D18D8D77B008D30D0 /* cube.obj */; };
-		3BA6731018D8D77B008D30D0 /* cube.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BA6730E18D8D77B008D30D0 /* cube.png */; };
+		3BA929CE18DCDAD200E9FEFC /* OpenObjRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3BA929CD18DCDAD200E9FEFC /* OpenObjRenderer.mm */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -85,8 +87,12 @@
 		3A349C9112CAEA1100B73A51 /* sourceUtil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sourceUtil.c; path = UtilSrc/sourceUtil.c; sourceTree = "<group>"; };
 		3A4554A614BE1FE300837CC3 /* GLEssentialsGLView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GLEssentialsGLView.h; path = Classes/OSX/GLEssentialsGLView.h; sourceTree = "<group>"; };
 		3A4554A714BE1FE300837CC3 /* GLEssentialsGLView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GLEssentialsGLView.m; path = Classes/OSX/GLEssentialsGLView.m; sourceTree = "<group>"; };
-		3B92A19618D9F9DF00D3F368 /* cube.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cube.c; path = Resources/cube.c; sourceTree = "<group>"; };
-		3B92A19718D9F9DF00D3F368 /* cube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cube.h; path = Resources/cube.h; sourceTree = "<group>"; };
+		3B84BA0618E0756800E475EF /* objloader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = objloader.cpp; path = UtilSrc/objloader.cpp; sourceTree = "<group>"; };
+		3B84BA0718E0756800E475EF /* objloader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = objloader.hpp; path = UtilSrc/objloader.hpp; sourceTree = "<group>"; };
+		3B84BA0818E0756800E475EF /* vboindexer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vboindexer.cpp; path = UtilSrc/vboindexer.cpp; sourceTree = "<group>"; };
+		3B84BA0918E0756800E475EF /* vboindexer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = vboindexer.hpp; path = UtilSrc/vboindexer.hpp; sourceTree = "<group>"; };
+		3B84BA0F18E07D6200E475EF /* cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cube.obj; path = Resources/cube.obj; sourceTree = "<group>"; };
+		3B84BA1018E07D6200E475EF /* cube.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cube.png; path = Resources/cube.png; sourceTree = "<group>"; };
 		3B92A19C18DB3CE000D3F368 /* OpenTriangleRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenTriangleRenderer.h; sourceTree = "<group>"; };
 		3B92A19D18DB3CE000D3F368 /* OpenTriangleRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenTriangleRenderer.m; sourceTree = "<group>"; };
 		3B92A19F18DB6C9A00D3F368 /* triangle.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = triangle.fsh; path = Shaders/triangle.fsh; sourceTree = "<group>"; };
@@ -109,8 +115,8 @@
 		3B92A1CD18DCC3DB00D3F368 /* OpenTexture1Renderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenTexture1Renderer.mm; sourceTree = "<group>"; };
 		3B92A1CF18DCC6F100D3F368 /* texture1.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = texture1.fsh; path = Shaders/texture1.fsh; sourceTree = "<group>"; };
 		3B92A1D018DCC6F100D3F368 /* texture1.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = texture1.vsh; path = Shaders/texture1.vsh; sourceTree = "<group>"; };
-		3BA6730D18D8D77B008D30D0 /* cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cube.obj; path = Resources/cube.obj; sourceTree = "<group>"; };
-		3BA6730E18D8D77B008D30D0 /* cube.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cube.png; path = Resources/cube.png; sourceTree = "<group>"; };
+		3BA929CC18DCDAD200E9FEFC /* OpenObjRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenObjRenderer.h; sourceTree = "<group>"; };
+		3BA929CD18DCDAD200E9FEFC /* OpenObjRenderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenObjRenderer.mm; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* OSXGLEssentials-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OSXGLEssentials-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -139,6 +145,8 @@
 				3A0BF471177B8C1F00A6C4D7 /* GLEssentialsWindowController.m */,
 				3A1598D611B9DDC5001E7AB5 /* OpenGLRenderer.h */,
 				3A1598D511B9DDC5001E7AB5 /* OpenGLRenderer.m */,
+				3BA929CC18DCDAD200E9FEFC /* OpenObjRenderer.h */,
+				3BA929CD18DCDAD200E9FEFC /* OpenObjRenderer.mm */,
 				3B92A1CC18DCC3DB00D3F368 /* OpenTexture1Renderer.h */,
 				3B92A1CD18DCC3DB00D3F368 /* OpenTexture1Renderer.mm */,
 				3B92A1C318DC93BC00D3F368 /* OpenTextureRenderer.h */,
@@ -197,6 +205,10 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				3B84BA0718E0756800E475EF /* objloader.hpp */,
+				3B84BA0618E0756800E475EF /* objloader.cpp */,
+				3B84BA0918E0756800E475EF /* vboindexer.hpp */,
+				3B84BA0818E0756800E475EF /* vboindexer.cpp */,
 				3A349C9112CAEA1100B73A51 /* sourceUtil.c */,
 				3A1598C511B9DDB0001E7AB5 /* sourceUtil.h */,
 				3A1598C411B9DDB0001E7AB5 /* vectorUtil.c */,
@@ -217,11 +229,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3B84BA0F18E07D6200E475EF /* cube.obj */,
+				3B84BA1018E07D6200E475EF /* cube.png */,
 				3B92A1C618DC958B00D3F368 /* texture.tga */,
-				3B92A19618D9F9DF00D3F368 /* cube.c */,
-				3B92A19718D9F9DF00D3F368 /* cube.h */,
-				3BA6730D18D8D77B008D30D0 /* cube.obj */,
-				3BA6730E18D8D77B008D30D0 /* cube.png */,
 				3A1598E611B9DE0A001E7AB5 /* MainMenu.xib */,
 				3A1598E711B9DE0A001E7AB5 /* InfoPlist.strings */,
 				3A1598E811B9DE0A001E7AB5 /* demon.png */,
@@ -338,8 +348,8 @@
 				3B92A1A118DB6C9A00D3F368 /* triangle.fsh in Resources */,
 				3B92A1D118DCC6F100D3F368 /* texture1.fsh in Resources */,
 				3B92A1B618DB893D00D3F368 /* matrix.fsh in Resources */,
-				3BA6731018D8D77B008D30D0 /* cube.png in Resources */,
-				3BA6730F18D8D77B008D30D0 /* cube.obj in Resources */,
+				3B84BA1118E07D6200E475EF /* cube.obj in Resources */,
+				3B84BA1218E07D6200E475EF /* cube.png in Resources */,
 				3A1598EC11B9DE0A001E7AB5 /* demon.png in Resources */,
 				3B92A1B718DB893D00D3F368 /* matrix.vsh in Resources */,
 				3A1598ED11B9DE0A001E7AB5 /* demon.model in Resources */,
@@ -353,6 +363,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B84BA0A18E0756800E475EF /* objloader.cpp in Sources */,
+				3BA929CE18DCDAD200E9FEFC /* OpenObjRenderer.mm in Sources */,
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				3A0BF47A177BC80300A6C4D7 /* GLEssentialsFullscreenWindow.m in Sources */,
 				3A1598CE11B9DDB0001E7AB5 /* vectorUtil.c in Sources */,
@@ -366,8 +378,8 @@
 				3B92A1B318DB887900D3F368 /* OpenMatrixRenderer.mm in Sources */,
 				3A349C9212CAEA1100B73A51 /* sourceUtil.c in Sources */,
 				3B92A1CE18DCC3DB00D3F368 /* OpenTexture1Renderer.mm in Sources */,
+				3B84BA0B18E0756800E475EF /* vboindexer.cpp in Sources */,
 				3B92A1BF18DC82FB00D3F368 /* OpenCubeRenderer.mm in Sources */,
-				3B92A19818D9F9DF00D3F368 /* cube.c in Sources */,
 				3A4554AB14BE325400837CC3 /* GLEssentialsGLView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

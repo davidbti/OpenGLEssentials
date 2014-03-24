@@ -46,6 +46,7 @@
  */
 
 #import "GLEssentialsGLView.h"
+#import "OpenObjRenderer.h"
 #import "OpenTextureRenderer.h"
 #import "OpenTexture1Renderer.h"
 #import "OpenCubeRenderer.h"
@@ -62,7 +63,7 @@
 
 @implementation GLEssentialsGLView
 
-OpenTexture1Renderer* m_renderer;
+OpenObjRenderer* m_renderer;
 
 - (CVReturn) getFrameForTime:(const CVTimeStamp*)outputTime
 {
@@ -184,7 +185,7 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink,
 	
 	// Init our renderer.  Use 0 for the defaultFBO which is appropriate for
 	// OSX (but not iOS since iOS apps must create their own FBO)
-	m_renderer = [[OpenTexture1Renderer alloc] initWithDefaultFBO:0];
+	m_renderer = [[OpenObjRenderer alloc] initWithDefaultFBO:0];
 }
 
 - (void) reshape
