@@ -183,6 +183,9 @@ unsigned int texture1Elements[] = {
                                        );
     // Model matrix : an identity matrix (model will be at the origin)
     glm::mat4 Model      = glm::mat4(1.0f);  // Changes for each model !
+    
+    Model = glm::rotate(Model, self.characterAngle, glm::vec3(0.7, 0.3, 1));
+    
     // Our ModelViewProjection : multiplication of our 3 matrices
     glm::mat4 MVP        = Projection * View * Model; // Remember, matrix multiplication is the other way around
     

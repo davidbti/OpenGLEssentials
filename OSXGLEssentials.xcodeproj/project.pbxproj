@@ -26,6 +26,12 @@
 		3A15990711B9DE6C001E7AB5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A15990611B9DE6C001E7AB5 /* QuartzCore.framework */; };
 		3A349C9212CAEA1100B73A51 /* sourceUtil.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A349C9112CAEA1100B73A51 /* sourceUtil.c */; };
 		3A4554AB14BE325400837CC3 /* GLEssentialsGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4554A714BE1FE300837CC3 /* GLEssentialsGLView.m */; };
+		3B672A4818E0CD87003152FD /* TN_County.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3B672A4718E0CD87003152FD /* TN_County.obj */; };
+		3B672A5018E0D716003152FD /* uvtemplate.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 3B672A4F18E0D716003152FD /* uvtemplate.bmp */; };
+		3B672A5318E20D92003152FD /* OpenIndexRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3B672A5218E20D92003152FD /* OpenIndexRenderer.mm */; };
+		3B672A5918E21A56003152FD /* OpenMapRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3B672A5818E21A56003152FD /* OpenMapRenderer.mm */; };
+		3B672A5B18E2222C003152FD /* USA_codes.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3B672A5A18E2222C003152FD /* USA_codes.obj */; };
+		3B672A5F18E225F2003152FD /* tn.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3B672A5E18E225F2003152FD /* tn.obj */; };
 		3B84BA0A18E0756800E475EF /* objloader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B84BA0618E0756800E475EF /* objloader.cpp */; };
 		3B84BA0B18E0756800E475EF /* vboindexer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B84BA0818E0756800E475EF /* vboindexer.cpp */; };
 		3B84BA1118E07D6200E475EF /* cube.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3B84BA0F18E07D6200E475EF /* cube.obj */; };
@@ -87,6 +93,14 @@
 		3A349C9112CAEA1100B73A51 /* sourceUtil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sourceUtil.c; path = UtilSrc/sourceUtil.c; sourceTree = "<group>"; };
 		3A4554A614BE1FE300837CC3 /* GLEssentialsGLView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GLEssentialsGLView.h; path = Classes/OSX/GLEssentialsGLView.h; sourceTree = "<group>"; };
 		3A4554A714BE1FE300837CC3 /* GLEssentialsGLView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GLEssentialsGLView.m; path = Classes/OSX/GLEssentialsGLView.m; sourceTree = "<group>"; };
+		3B672A4718E0CD87003152FD /* TN_County.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = TN_County.obj; path = Resources/TN_County.obj; sourceTree = "<group>"; };
+		3B672A4F18E0D716003152FD /* uvtemplate.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; name = uvtemplate.bmp; path = Resources/uvtemplate.bmp; sourceTree = "<group>"; };
+		3B672A5118E20D92003152FD /* OpenIndexRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenIndexRenderer.h; sourceTree = "<group>"; };
+		3B672A5218E20D92003152FD /* OpenIndexRenderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenIndexRenderer.mm; sourceTree = "<group>"; };
+		3B672A5718E21A56003152FD /* OpenMapRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenMapRenderer.h; sourceTree = "<group>"; };
+		3B672A5818E21A56003152FD /* OpenMapRenderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenMapRenderer.mm; sourceTree = "<group>"; };
+		3B672A5A18E2222C003152FD /* USA_codes.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = USA_codes.obj; path = Resources/USA_codes.obj; sourceTree = "<group>"; };
+		3B672A5E18E225F2003152FD /* tn.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tn.obj; path = Resources/tn.obj; sourceTree = "<group>"; };
 		3B84BA0618E0756800E475EF /* objloader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = objloader.cpp; path = UtilSrc/objloader.cpp; sourceTree = "<group>"; };
 		3B84BA0718E0756800E475EF /* objloader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = objloader.hpp; path = UtilSrc/objloader.hpp; sourceTree = "<group>"; };
 		3B84BA0818E0756800E475EF /* vboindexer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vboindexer.cpp; path = UtilSrc/vboindexer.cpp; sourceTree = "<group>"; };
@@ -145,6 +159,10 @@
 				3A0BF471177B8C1F00A6C4D7 /* GLEssentialsWindowController.m */,
 				3A1598D611B9DDC5001E7AB5 /* OpenGLRenderer.h */,
 				3A1598D511B9DDC5001E7AB5 /* OpenGLRenderer.m */,
+				3B672A5718E21A56003152FD /* OpenMapRenderer.h */,
+				3B672A5818E21A56003152FD /* OpenMapRenderer.mm */,
+				3B672A5118E20D92003152FD /* OpenIndexRenderer.h */,
+				3B672A5218E20D92003152FD /* OpenIndexRenderer.mm */,
 				3BA929CC18DCDAD200E9FEFC /* OpenObjRenderer.h */,
 				3BA929CD18DCDAD200E9FEFC /* OpenObjRenderer.mm */,
 				3B92A1CC18DCC3DB00D3F368 /* OpenTexture1Renderer.h */,
@@ -229,6 +247,10 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3B672A5E18E225F2003152FD /* tn.obj */,
+				3B672A5A18E2222C003152FD /* USA_codes.obj */,
+				3B672A4F18E0D716003152FD /* uvtemplate.bmp */,
+				3B672A4718E0CD87003152FD /* TN_County.obj */,
 				3B84BA0F18E07D6200E475EF /* cube.obj */,
 				3B84BA1018E07D6200E475EF /* cube.png */,
 				3B92A1C618DC958B00D3F368 /* texture.tga */,
@@ -333,6 +355,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B92A1CB18DC95D800D3F368 /* texture.vsh in Resources */,
+				3B672A4818E0CD87003152FD /* TN_County.obj in Resources */,
+				3B672A5018E0D716003152FD /* uvtemplate.bmp in Resources */,
 				3A1598E211B9DDF3001E7AB5 /* reflect.vsh in Resources */,
 				3A1598E311B9DDF3001E7AB5 /* reflect.fsh in Resources */,
 				3B92A1AF18DB7CF200D3F368 /* cube.fsh in Resources */,
@@ -342,8 +366,10 @@
 				3A1598EA11B9DE0A001E7AB5 /* MainMenu.xib in Resources */,
 				3B92A1A218DB6C9A00D3F368 /* triangle.vsh in Resources */,
 				3B92A1D218DCC6F100D3F368 /* texture1.vsh in Resources */,
+				3B672A5B18E2222C003152FD /* USA_codes.obj in Resources */,
 				3A1598EB11B9DE0A001E7AB5 /* InfoPlist.strings in Resources */,
 				3B92A1CA18DC95D800D3F368 /* texture.fsh in Resources */,
+				3B672A5F18E225F2003152FD /* tn.obj in Resources */,
 				3B92A1B018DB7CF200D3F368 /* cube.vsh in Resources */,
 				3B92A1A118DB6C9A00D3F368 /* triangle.fsh in Resources */,
 				3B92A1D118DCC6F100D3F368 /* texture1.fsh in Resources */,
@@ -370,9 +396,11 @@
 				3A1598CE11B9DDB0001E7AB5 /* vectorUtil.c in Sources */,
 				3A1598D011B9DDB0001E7AB5 /* modelUtil.c in Sources */,
 				3B92A19E18DB3CE000D3F368 /* OpenTriangleRenderer.m in Sources */,
+				3B672A5318E20D92003152FD /* OpenIndexRenderer.mm in Sources */,
 				3A0BF472177B8C1F00A6C4D7 /* GLEssentialsWindowController.m in Sources */,
 				3A1598D111B9DDB0001E7AB5 /* matrixUtil.c in Sources */,
 				3A1598D211B9DDB0001E7AB5 /* imageUtil.m in Sources */,
+				3B672A5918E21A56003152FD /* OpenMapRenderer.mm in Sources */,
 				3B92A1C518DC93BC00D3F368 /* OpenTextureRenderer.mm in Sources */,
 				3A1598DB11B9DDC5001E7AB5 /* OpenGLRenderer.m in Sources */,
 				3B92A1B318DB887900D3F368 /* OpenMatrixRenderer.mm in Sources */,

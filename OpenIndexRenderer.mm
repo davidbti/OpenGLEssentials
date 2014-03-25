@@ -6,7 +6,7 @@
 //
 //
 
-#import "OpenObjRenderer.h"
+#import "OpenIndexRenderer.h"
 
 extern "C"
 {
@@ -52,7 +52,7 @@ enum {
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
-@interface OpenObjRenderer ()
+@interface OpenIndexRenderer ()
 
     @property (nonatomic, assign) GLuint defaultFBOName;
 
@@ -70,20 +70,12 @@ enum {
 
 @end
 
-@implementation OpenObjRenderer
+@implementation OpenIndexRenderer
 
-std::vector<glm::vec3> objPositions;
-std::vector<glm::vec2> objTexcoords;
-std::vector<glm::vec3> objNormals;
-
-unsigned short objElements[] = {
-    0, 1, 2, 3, 4, 5,
-    6, 7, 8, 9, 10, 11,
-    12, 13, 14, 15, 16, 17,
-    18, 19, 20, 21, 22, 23,
-    24, 25, 26, 27, 28, 29,
-    30, 31, 32, 33, 34, 35
-};
+std::vector<glm::vec3> idxPositions;
+std::vector<glm::vec2> idxTexcoords;
+std::vector<glm::vec3> idxNormals;
+std::vector<unsigned short> idxElements;
 
 - (void) resizeWithWidth:(GLuint)width AndHeight:(GLuint)height
 {
@@ -111,7 +103,7 @@ unsigned short objElements[] = {
     // Model matrix : an identity matrix (model will be at the origin)
     glm::mat4 Model      = glm::mat4(1.0f);  // Changes for each model !
     
-    Model = glm::rotate(Model, self.characterAngle, glm::vec3(1.0, 0.0, 0.0));
+    Model = glm::rotate(Model, self.characterAngle, glm::vec3(0.0, 1.0, 0.0));
     
     // Our ModelViewProjection : multiplication of our 3 matrices
     glm::mat4 MVP        = Projection * View * Model; // Remember, matrix multiplication is the other way around
@@ -127,7 +119,7 @@ unsigned short objElements[] = {
 	// Bind our vertex array object
 	glBindVertexArray(self.characterVAOName);
     
-    glDrawElements(GL_TRIANGLES, sizeof(objElements), GL_UNSIGNED_SHORT, 0);
+    glDrawElements(GL_TRIANGLES, idxElements.size(), GL_UNSIGNED_SHORT, 0);
     
     self.characterAngle++;
 }
@@ -168,7 +160,7 @@ static GLsizei GetGLTypeSize(GLenum type)
     glBindBuffer(GL_ARRAY_BUFFER, posBufferName);
     
     // Allocate and load position data into the VBO
-    glBufferData(GL_ARRAY_BUFFER, objPositions.size() * sizeof(glm::vec3), &objPositions[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, idxPositions.size() * sizeof(glm::vec3), &idxPositions[0], GL_STATIC_DRAW);
     
     // Enable the position attribute for this VAO
     glEnableVertexAttribArray(POS_ATTRIB_IDX);
@@ -193,7 +185,7 @@ static GLsizei GetGLTypeSize(GLenum type)
     glBindBuffer(GL_ARRAY_BUFFER, texcoordBufferName);
     
     // Allocate and load color data into the VBO
-    glBufferData(GL_ARRAY_BUFFER, objTexcoords.size() * sizeof(glm::vec2), &objTexcoords[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, idxTexcoords.size() * sizeof(glm::vec2), &idxTexcoords[0], GL_STATIC_DRAW);
     
     // Enable the position attribute for this VAO
     glEnableVertexAttribArray(TEXCOORD_ATTRIB_IDX);
@@ -219,8 +211,8 @@ static GLsizei GetGLTypeSize(GLenum type)
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementBufferName);
     
     // Allocate and load vertex array element data into VBO
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(objElements), objElements, GL_STATIC_DRAW);
-    
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, idxElements.size() * sizeof(unsigned short), &idxElements[0] , GL_STATIC_DRAW);
+
 	GetGLError();
 	
 	return vaoName;
@@ -506,11 +498,15 @@ static GLsizei GetGLTypeSize(GLenum type)
         const char * path = [filePathName cStringUsingEncoding:NSASCIIStringEncoding];
         
         // Read our .obj file
-        bool res = loadOBJ(path, objPositions, objTexcoords, objNormals);
+        std::vector<glm::vec3> vertices;
+        std::vector<glm::vec2> uvs;
+        std::vector<glm::vec3> normals;
+        bool res = loadOBJ(path, vertices, uvs, normals);
         if(!res)
 		{
 			NSLog(@"Could not load obj file");
 		}
+        indexVBO(vertices, uvs, normals, idxElements, idxPositions, idxTexcoords, idxNormals);
         
         // Build Vertex Buffer Objects (VBOs) and Vertex Array Object (VAOs) with our model data
 		self.characterVAOName = [self buildVAO];
