@@ -6,7 +6,7 @@
 //
 //
 
-#import "OpenMapRenderer.h"
+#import "OpenAssimpRenderer.h"
 
 extern "C"
 {
@@ -52,7 +52,7 @@ enum {
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
-@interface OpenMapRenderer ()
+@interface OpenAssimpRenderer ()
 
     @property (nonatomic, assign) GLuint defaultFBOName;
 
@@ -70,12 +70,12 @@ enum {
 
 @end
 
-@implementation OpenMapRenderer
+@implementation OpenAssimpRenderer
 
-std::vector<glm::vec3> mapPositions;
-std::vector<glm::vec2> mapTexcoords;
-std::vector<glm::vec3> mapNormals;
-std::vector<unsigned short> mapElements;
+std::vector<glm::vec3> assPositions;
+std::vector<glm::vec2> assTexcoords;
+std::vector<glm::vec3> assNormals;
+std::vector<unsigned short> assElements;
 
 - (void) resizeWithWidth:(GLuint)width AndHeight:(GLuint)height
 {
@@ -103,7 +103,7 @@ std::vector<unsigned short> mapElements;
     // Model matrix : an identity matrix (model will be at the origin)
     glm::mat4 Model      = glm::mat4(1.0f);  // Changes for each model !
     
-    Model = glm::rotate(Model, self.characterAngle, glm::vec3(1.0, 0.0, 0.0));
+    Model = glm::rotate(Model, self.characterAngle, glm::vec3(0.0, 1.0, 0.0));
     
     // Our ModelViewProjection : multiplication of our 3 matrices
     glm::mat4 MVP        = Projection * View * Model; // Remember, matrix multiplication is the other way around
@@ -119,7 +119,7 @@ std::vector<unsigned short> mapElements;
 	// Bind our vertex array object
 	glBindVertexArray(self.characterVAOName);
     
-    glDrawElements(GL_TRIANGLES, mapElements.size(), GL_UNSIGNED_SHORT, 0);
+    glDrawElements(GL_TRIANGLES, assElements.size(), GL_UNSIGNED_SHORT, 0);
     
     self.characterAngle++;
 }
@@ -160,7 +160,7 @@ static GLsizei GetGLTypeSize(GLenum type)
     glBindBuffer(GL_ARRAY_BUFFER, posBufferName);
     
     // Allocate and load position data into the VBO
-    glBufferData(GL_ARRAY_BUFFER, mapPositions.size() * sizeof(glm::vec3), &mapPositions[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, assPositions.size() * sizeof(glm::vec3), &assPositions[0], GL_STATIC_DRAW);
     
     // Enable the position attribute for this VAO
     glEnableVertexAttribArray(POS_ATTRIB_IDX);
@@ -185,7 +185,7 @@ static GLsizei GetGLTypeSize(GLenum type)
     glBindBuffer(GL_ARRAY_BUFFER, texcoordBufferName);
     
     // Allocate and load color data into the VBO
-    glBufferData(GL_ARRAY_BUFFER, mapTexcoords.size() * sizeof(glm::vec2), &mapTexcoords[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, assTexcoords.size() * sizeof(glm::vec2), &assTexcoords[0], GL_STATIC_DRAW);
     
     // Enable the position attribute for this VAO
     glEnableVertexAttribArray(TEXCOORD_ATTRIB_IDX);
@@ -211,7 +211,7 @@ static GLsizei GetGLTypeSize(GLenum type)
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementBufferName);
     
     // Allocate and load vertex array element data into VBO
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, mapElements.size() * sizeof(unsigned short), &mapElements[0] , GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, assElements.size() * sizeof(unsigned short), &assElements[0] , GL_STATIC_DRAW);
 
 	GetGLError();
 	
@@ -494,19 +494,15 @@ static GLsizei GetGLTypeSize(GLenum type)
 		// Load our character model //
 		//////////////////////////////
         
-        filePathName = [[NSBundle mainBundle] pathForResource:@"tn" ofType:@"obj"];
+        filePathName = [[NSBundle mainBundle] pathForResource:@"cube" ofType:@"obj"];
         const char * path = [filePathName cStringUsingEncoding:NSASCIIStringEncoding];
         
         // Read our .obj file
-        std::vector<glm::vec3> vertices;
-        std::vector<glm::vec2> uvs;
-        std::vector<glm::vec3> normals;
-        bool res = loadOBJMap(path, vertices, uvs, normals);
+        bool res = loadAssImp(path, assElements, assPositions, assTexcoords, assNormals);
         if(!res)
 		{
 			NSLog(@"Could not load obj file");
 		}
-        indexVBO(vertices, uvs, normals, mapElements, mapPositions, mapTexcoords, mapNormals);
         
         // Build Vertex Buffer Objects (VBOs) and Vertex Array Object (VAOs) with our model data
 		self.characterVAOName = [self buildVAO];

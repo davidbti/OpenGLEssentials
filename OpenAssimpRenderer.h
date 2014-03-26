@@ -9,7 +9,7 @@
 #import "glUtil.h"
 #import <Foundation/Foundation.h>
 
-@interface OpenMapRenderer : NSObject
+@interface OpenAssimpRenderer : NSObject
 
 - (id) initWithDefaultFBO: (GLuint) defaultFBOName;
 - (void) resizeWithWidth:(GLuint)width AndHeight:(GLuint)height;
