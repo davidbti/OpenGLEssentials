@@ -50,6 +50,12 @@
 		3B92A1D218DCC6F100D3F368 /* texture1.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 3B92A1D018DCC6F100D3F368 /* texture1.vsh */; };
 		3BA929CE18DCDAD200E9FEFC /* OpenObjRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3BA929CD18DCDAD200E9FEFC /* OpenObjRenderer.mm */; };
 		3BDCA18918E3228C00446355 /* OpenAssimpRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3BDCA18818E3228C00446355 /* OpenAssimpRenderer.mm */; };
+		3BDCA39318E326AE00446355 /* OpenMapRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3BDCA39218E326AE00446355 /* OpenMapRenderer.mm */; };
+		3BDCA39518E327FC00446355 /* tn.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3BDCA39418E327FC00446355 /* tn.obj */; };
+		3BDCA39718E32BB600446355 /* cubelarge.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3BDCA39618E32BB600446355 /* cubelarge.obj */; };
+		3BECD6D718E34A8E004CF1F0 /* tn1.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3BECD6D618E34A8E004CF1F0 /* tn1.obj */; };
+		3BECD6DB18E36ABA004CF1F0 /* cube.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BECD6DA18E36ABA004CF1F0 /* cube.png */; };
+		3BECD6DE18E37A03004CF1F0 /* OpenCameraRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3BECD6DD18E37A03004CF1F0 /* OpenCameraRenderer.mm */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -125,6 +131,14 @@
 		3BA929CD18DCDAD200E9FEFC /* OpenObjRenderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenObjRenderer.mm; sourceTree = "<group>"; };
 		3BDCA18718E3228C00446355 /* OpenAssimpRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenAssimpRenderer.h; sourceTree = "<group>"; };
 		3BDCA18818E3228C00446355 /* OpenAssimpRenderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenAssimpRenderer.mm; sourceTree = "<group>"; };
+		3BDCA39118E326AE00446355 /* OpenMapRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenMapRenderer.h; sourceTree = "<group>"; };
+		3BDCA39218E326AE00446355 /* OpenMapRenderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenMapRenderer.mm; sourceTree = "<group>"; };
+		3BDCA39418E327FC00446355 /* tn.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tn.obj; path = Resources/tn.obj; sourceTree = "<group>"; };
+		3BDCA39618E32BB600446355 /* cubelarge.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cubelarge.obj; path = Resources/cubelarge.obj; sourceTree = "<group>"; };
+		3BECD6D618E34A8E004CF1F0 /* tn1.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tn1.obj; path = Resources/tn1.obj; sourceTree = "<group>"; };
+		3BECD6DA18E36ABA004CF1F0 /* cube.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cube.png; path = Resources/cube.png; sourceTree = "<group>"; };
+		3BECD6DC18E37A03004CF1F0 /* OpenCameraRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCameraRenderer.h; sourceTree = "<group>"; };
+		3BECD6DD18E37A03004CF1F0 /* OpenCameraRenderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCameraRenderer.mm; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* OSXGLEssentials-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OSXGLEssentials-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -154,6 +168,10 @@
 				3A0BF471177B8C1F00A6C4D7 /* GLEssentialsWindowController.m */,
 				3A1598D611B9DDC5001E7AB5 /* OpenGLRenderer.h */,
 				3A1598D511B9DDC5001E7AB5 /* OpenGLRenderer.m */,
+				3BECD6DC18E37A03004CF1F0 /* OpenCameraRenderer.h */,
+				3BECD6DD18E37A03004CF1F0 /* OpenCameraRenderer.mm */,
+				3BDCA39118E326AE00446355 /* OpenMapRenderer.h */,
+				3BDCA39218E326AE00446355 /* OpenMapRenderer.mm */,
 				3BDCA18718E3228C00446355 /* OpenAssimpRenderer.h */,
 				3BDCA18818E3228C00446355 /* OpenAssimpRenderer.mm */,
 				3B672A5118E20D92003152FD /* OpenIndexRenderer.h */,
@@ -242,6 +260,10 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3BECD6DA18E36ABA004CF1F0 /* cube.png */,
+				3BECD6D618E34A8E004CF1F0 /* tn1.obj */,
+				3BDCA39618E32BB600446355 /* cubelarge.obj */,
+				3BDCA39418E327FC00446355 /* tn.obj */,
 				3B672A4F18E0D716003152FD /* uvtemplate.bmp */,
 				3B84BA0F18E07D6200E475EF /* cube.obj */,
 				3B92A1C618DC958B00D3F368 /* texture.tga */,
@@ -349,15 +371,19 @@
 				3B92A1CB18DC95D800D3F368 /* texture.vsh in Resources */,
 				3B672A5018E0D716003152FD /* uvtemplate.bmp in Resources */,
 				3A1598E211B9DDF3001E7AB5 /* reflect.vsh in Resources */,
+				3BECD6D718E34A8E004CF1F0 /* tn1.obj in Resources */,
 				3A1598E311B9DDF3001E7AB5 /* reflect.fsh in Resources */,
 				3B92A1AF18DB7CF200D3F368 /* cube.fsh in Resources */,
 				3A1598E411B9DDF3001E7AB5 /* character.vsh in Resources */,
 				3A1598E511B9DDF3001E7AB5 /* character.fsh in Resources */,
 				3B92A1C718DC958B00D3F368 /* texture.tga in Resources */,
 				3A1598EA11B9DE0A001E7AB5 /* MainMenu.xib in Resources */,
+				3BDCA39518E327FC00446355 /* tn.obj in Resources */,
+				3BECD6DB18E36ABA004CF1F0 /* cube.png in Resources */,
 				3B92A1A218DB6C9A00D3F368 /* triangle.vsh in Resources */,
 				3B92A1D218DCC6F100D3F368 /* texture1.vsh in Resources */,
 				3A1598EB11B9DE0A001E7AB5 /* InfoPlist.strings in Resources */,
+				3BDCA39718E32BB600446355 /* cubelarge.obj in Resources */,
 				3B92A1CA18DC95D800D3F368 /* texture.fsh in Resources */,
 				3B92A1B018DB7CF200D3F368 /* cube.vsh in Resources */,
 				3B92A1A118DB6C9A00D3F368 /* triangle.fsh in Resources */,
@@ -377,6 +403,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BDCA39318E326AE00446355 /* OpenMapRenderer.mm in Sources */,
 				3B84BA0A18E0756800E475EF /* objloader.cpp in Sources */,
 				3BA929CE18DCDAD200E9FEFC /* OpenObjRenderer.mm in Sources */,
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
@@ -389,6 +416,7 @@
 				3BDCA18918E3228C00446355 /* OpenAssimpRenderer.mm in Sources */,
 				3A1598D111B9DDB0001E7AB5 /* matrixUtil.c in Sources */,
 				3A1598D211B9DDB0001E7AB5 /* imageUtil.m in Sources */,
+				3BECD6DE18E37A03004CF1F0 /* OpenCameraRenderer.mm in Sources */,
 				3B92A1C518DC93BC00D3F368 /* OpenTextureRenderer.mm in Sources */,
 				3A1598DB11B9DDC5001E7AB5 /* OpenGLRenderer.m in Sources */,
 				3B92A1B318DB887900D3F368 /* OpenMatrixRenderer.mm in Sources */,

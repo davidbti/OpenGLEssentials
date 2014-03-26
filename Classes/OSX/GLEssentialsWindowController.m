@@ -174,7 +174,7 @@ NSWindow* standardWindow;
 				[self goWindow];
 			}
 			return;
-	}
+    }
 
 	// Allow other character to be handled (or not and beep)
 	[super keyDown:event];

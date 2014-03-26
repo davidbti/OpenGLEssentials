@@ -6,7 +6,7 @@
 //
 //
 
-#import "OpenAssimpRenderer.h"
+#import "OpenCameraRenderer.h"
 
 extern "C"
 {
@@ -51,7 +51,7 @@ enum {
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
-@interface OpenAssimpRenderer ()
+@interface OpenCameraRenderer ()
 
     @property (nonatomic, assign) GLuint defaultFBOName;
 
@@ -69,12 +69,12 @@ enum {
 
 @end
 
-@implementation OpenAssimpRenderer
+@implementation OpenCameraRenderer
 
-std::vector<glm::vec3> assPositions;
-std::vector<glm::vec2> assTexcoords;
-std::vector<glm::vec3> assNormals;
-std::vector<unsigned short> assElements;
+std::vector<glm::vec3> camPositions;
+std::vector<glm::vec2> camTexcoords;
+std::vector<glm::vec3> camNormals;
+std::vector<unsigned short> camElements;
 
 - (void) resizeWithWidth:(GLuint)width AndHeight:(GLuint)height
 {
@@ -92,17 +92,16 @@ std::vector<unsigned short> assElements;
 	glUseProgram(self.characterPrgName);
     
     // Projection matrix : 45° Field of View, 4:3 ratio, display range : 0.1 unit <-> 100 units
-    glm::mat4 Projection = glm::perspective(45.0f, 4.0f / 3.0f, 0.1f, 100.0f);
+    glm::mat4 Projection = glm::perspective(45.0f, (float)self.viewWidth / (float)self.viewHeight, 0.1f, 500.0f);
     // Camera matrix
     glm::mat4 View       = glm::lookAt(
-                                       glm::vec3(4,3,3), // Camera is at (4,3,3), in World Space
+                                       glm::vec3(120,90,90), // Camera is at (4,3,3), in World Space
                                        glm::vec3(0,0,0), // and looks at the origin
                                        glm::vec3(0,1,0)  // Head is up (set to 0,-1,0 to look upside-down)
                                        );
+    
     // Model matrix : an identity matrix (model will be at the origin)
     glm::mat4 Model      = glm::mat4(1.0f);  // Changes for each model !
-    
-    Model = glm::rotate(Model, self.characterAngle, glm::vec3(0.0, 1.0, 0.0));
     
     // Our ModelViewProjection : multiplication of our 3 matrices
     glm::mat4 MVP        = Projection * View * Model; // Remember, matrix multiplication is the other way around
@@ -118,9 +117,9 @@ std::vector<unsigned short> assElements;
 	// Bind our vertex array object
 	glBindVertexArray(self.characterVAOName);
     
-    glDrawElements(GL_TRIANGLES, assElements.size(), GL_UNSIGNED_SHORT, 0);
+    glDrawElements(GL_TRIANGLES, camElements.size(), GL_UNSIGNED_SHORT, 0);
     
-    self.characterAngle++;
+    self.characterAngle--;
 }
 
 static GLsizei GetGLTypeSize(GLenum type)
@@ -159,7 +158,7 @@ static GLsizei GetGLTypeSize(GLenum type)
     glBindBuffer(GL_ARRAY_BUFFER, posBufferName);
     
     // Allocate and load position data into the VBO
-    glBufferData(GL_ARRAY_BUFFER, assPositions.size() * sizeof(glm::vec3), &assPositions[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, camPositions.size() * sizeof(glm::vec3), &camPositions[0], GL_STATIC_DRAW);
     
     // Enable the position attribute for this VAO
     glEnableVertexAttribArray(POS_ATTRIB_IDX);
@@ -184,7 +183,7 @@ static GLsizei GetGLTypeSize(GLenum type)
     glBindBuffer(GL_ARRAY_BUFFER, texcoordBufferName);
     
     // Allocate and load color data into the VBO
-    glBufferData(GL_ARRAY_BUFFER, assTexcoords.size() * sizeof(glm::vec2), &assTexcoords[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, camTexcoords.size() * sizeof(glm::vec2), &camTexcoords[0], GL_STATIC_DRAW);
     
     // Enable the position attribute for this VAO
     glEnableVertexAttribArray(TEXCOORD_ATTRIB_IDX);
@@ -210,7 +209,7 @@ static GLsizei GetGLTypeSize(GLenum type)
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementBufferName);
     
     // Allocate and load vertex array element data into VBO
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, assElements.size() * sizeof(unsigned short), &assElements[0] , GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, camElements.size() * sizeof(unsigned short), &camElements[0] , GL_STATIC_DRAW);
 
 	GetGLError();
 	
@@ -493,11 +492,11 @@ static GLsizei GetGLTypeSize(GLenum type)
 		// Load our character model //
 		//////////////////////////////
         
-        filePathName = [[NSBundle mainBundle] pathForResource:@"cube" ofType:@"obj"];
+        filePathName = [[NSBundle mainBundle] pathForResource:@"tn1" ofType:@"obj"];
         const char * path = [filePathName cStringUsingEncoding:NSASCIIStringEncoding];
         
         // Read our .obj file
-        bool res = loadAssImp(path, assElements, assPositions, assTexcoords, assNormals);
+        bool res = loadAssImp(path, camElements, camPositions, camTexcoords, camNormals);
         if(!res)
 		{
 			NSLog(@"Could not load obj file");
@@ -510,7 +509,7 @@ static GLsizei GetGLTypeSize(GLenum type)
 		// Load texture for our character //
 		////////////////////////////////////
 		
-		filePathName = [[NSBundle mainBundle] pathForResource:@"uvtemplate" ofType:@"bmp"];
+		filePathName = [[NSBundle mainBundle] pathForResource:@"cube" ofType:@"png"];
 		demoImage *image = imgLoadImage([filePathName cStringUsingEncoding:NSASCIIStringEncoding], false);
 		
 		// Build a texture object with our image data
