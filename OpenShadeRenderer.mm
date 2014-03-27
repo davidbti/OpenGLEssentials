@@ -6,7 +6,7 @@
 //
 //
 
-#import "OpenCameraRenderer.h"
+#import "OpenShadeRenderer.h"
 
 extern "C"
 {
@@ -43,7 +43,8 @@ extern "C"
 // See buildVAO and buildProgram
 enum {
 	POS_ATTRIB_IDX,
-	TEXCOORD_ATTRIB_IDX
+	TEXCOORD_ATTRIB_IDX,
+    NORMAL_ATTRIB_IDX,
 };
 
 #ifndef NULL
@@ -52,16 +53,17 @@ enum {
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
-@interface OpenCameraRenderer ()
+@interface OpenShadeRenderer ()
 
     @property (nonatomic, assign) GLuint defaultFBOName;
 
     @property (nonatomic, assign) GLuint characterPrgName;
-    @property (nonatomic, assign) GLint characterCameraUniformIdx;
-    @property (nonatomic, assign) GLint characterModelUniformIdx;
+    @property (nonatomic, assign) GLint mvpUniformIdx;
+    @property (nonatomic, assign) GLint modelUniformIdx;
+    @property (nonatomic, assign) GLint viewlUniformIdx;
+    @property (nonatomic, assign) GLint lightUniformIdx;
     @property (nonatomic, assign) GLuint characterVAOName;
     @property (nonatomic, assign) GLuint characterTexName;
-    @property (nonatomic, assign) GLint characterTexUniformIdx;
     @property (nonatomic, assign) GLfloat characterAngle;
 
     @property (nonatomic, assign) GLuint viewWidth;
@@ -71,13 +73,13 @@ enum {
 
 @end
 
-@implementation OpenCameraRenderer
+@implementation OpenShadeRenderer
 
-std::vector<glm::vec3> camPositions;
-std::vector<glm::vec2> camTexcoords;
-std::vector<glm::vec3> camNormals;
-std::vector<unsigned short> camElements;
-Camera camera;
+std::vector<glm::vec3> shdPositions;
+std::vector<glm::vec2> shdTexcoords;
+std::vector<glm::vec3> shdNormals;
+std::vector<unsigned short> shdElements;
+Camera shdcamera;
 
 - (void) resizeWithWidth:(GLuint)width AndHeight:(GLuint)height
 {
@@ -95,20 +97,22 @@ Camera camera;
 	glUseProgram(self.characterPrgName);
     
     // Model matrix : an identity matrix (model will be at the origin)
-    glm::mat4 Model      = glm::mat4(1.0f);  // Changes for each model !
+    glm::mat4 model      = glm::mat4(1.0f);  // Changes for each model !
     
-    camera.setViewportAspectRatio((float)self.viewWidth / (float)self.viewHeight);
+    shdcamera.setViewportAspectRatio((float)self.viewWidth / (float)self.viewHeight);
+    shdcamera.offsetPosition(0.5f * -shdcamera.right());
+    shdcamera.lookAt(glm::vec3(0,0,0));
     
-    camera.offsetPosition(0.5f * -camera.right());
-    camera.lookAt(glm::vec3(0,0,0));
+    glm::mat4 mvp        = shdcamera.matrix() * model;
     
-    glm::mat4 Cam        = camera.matrix();
+    glm::mat4 view        = shdcamera.view();
     
-    // Send our transformation to the currently bound shader,
-    // in the "MVP" uniform
-    // For each model you render, since the MVP will be different (at least the M part)
-    glUniformMatrix4fv(self.characterModelUniformIdx, 1, GL_FALSE, &Model[0][0]);
-    glUniformMatrix4fv(self.characterCameraUniformIdx, 1, GL_FALSE, &Cam[0][0]);
+    glUniformMatrix4fv(self.mvpUniformIdx, 1, GL_FALSE, &mvp[0][0]);
+    glUniformMatrix4fv(self.modelUniformIdx, 1, GL_FALSE, &model[0][0]);
+    glUniformMatrix4fv(self.viewlUniformIdx, 1, GL_FALSE, &view[0][0]);
+    
+    glm::vec3 lightPos = glm::vec3(-150,90,.71);
+    glUniform3f(self.lightUniformIdx, lightPos.x, lightPos.y, lightPos.z);
 	
     // Bind the texture to be used
 	glBindTexture(GL_TEXTURE_2D, self.characterTexName);
@@ -116,7 +120,7 @@ Camera camera;
 	// Bind our vertex array object
 	glBindVertexArray(self.characterVAOName);
     
-    glDrawElements(GL_TRIANGLES, camElements.size(), GL_UNSIGNED_SHORT, 0);
+    glDrawElements(GL_TRIANGLES, shdElements.size(), GL_UNSIGNED_SHORT, 0);
     
     self.characterAngle--;
 }
@@ -157,7 +161,7 @@ static GLsizei GetGLTypeSize(GLenum type)
     glBindBuffer(GL_ARRAY_BUFFER, posBufferName);
     
     // Allocate and load position data into the VBO
-    glBufferData(GL_ARRAY_BUFFER, camPositions.size() * sizeof(glm::vec3), &camPositions[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, shdPositions.size() * sizeof(glm::vec3), &shdPositions[0], GL_STATIC_DRAW);
     
     // Enable the position attribute for this VAO
     glEnableVertexAttribArray(POS_ATTRIB_IDX);
@@ -182,7 +186,7 @@ static GLsizei GetGLTypeSize(GLenum type)
     glBindBuffer(GL_ARRAY_BUFFER, texcoordBufferName);
     
     // Allocate and load color data into the VBO
-    glBufferData(GL_ARRAY_BUFFER, camTexcoords.size() * sizeof(glm::vec2), &camTexcoords[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, shdTexcoords.size() * sizeof(glm::vec2), &shdTexcoords[0], GL_STATIC_DRAW);
     
     // Enable the position attribute for this VAO
     glEnableVertexAttribArray(TEXCOORD_ATTRIB_IDX);
@@ -200,6 +204,32 @@ static GLsizei GetGLTypeSize(GLenum type)
                           0, // What is the stride (i.e. bytes between positions)?
                           BUFFER_OFFSET(0));	// What is the offset in the VBO to the position data?
     
+    GLuint normalBufferName;
+    
+    // Create a vertex buffer object (VBO) to store positions
+    glGenBuffers(1, &normalBufferName);
+    glBindBuffer(GL_ARRAY_BUFFER, normalBufferName);
+    
+    // Allocate and load normal data into the VBO
+    glBufferData(GL_ARRAY_BUFFER, shdNormals.size() * sizeof(glm::vec3), &shdNormals[0], GL_STATIC_DRAW);
+    
+    // Enable the normal attribute for this VAO
+    glEnableVertexAttribArray(NORMAL_ATTRIB_IDX);
+    
+    // Get the size of the normal type so we can set the stride properly
+    //GLsizei normalTypeSize = GetGLTypeSize(GL_FLOAT);
+    
+    // Set up parmeters for position attribute in the VAO including,
+    //   size, type, stride, and offset in the currenly bound VAO
+    // This also attaches the position VBO to the VAO
+    glVertexAttribPointer(NORMAL_ATTRIB_IDX,	// What attibute index will this array feed in the vertex shader (see buildProgram)
+                          3,	// How many elements are there per normal?
+                          GL_FLOAT,	// What is the type of this data?
+                          GL_FALSE,				// Do we want to normalize this data (0-1 range for fixed-pont types)
+                          0, // What is the stride (i.e. bytes between normals)?
+                          BUFFER_OFFSET(0));	// What is the offset in the VBO to the normal data?
+
+
     GLuint elementBufferName;
     
     // Create a VBO to vertex array elements
@@ -208,7 +238,7 @@ static GLsizei GetGLTypeSize(GLenum type)
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementBufferName);
     
     // Allocate and load vertex array element data into VBO
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, camElements.size() * sizeof(unsigned short), &camElements[0] , GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, shdElements.size() * sizeof(unsigned short), &shdElements[0] , GL_STATIC_DRAW);
 
 	GetGLError();
 	
@@ -322,10 +352,12 @@ static GLsizei GetGLTypeSize(GLenum type)
 	// Indicate the attribute indicies on which vertex arrays will be
 	//  set with glVertexAttribPointer
 	//  See buildVAO to see where vertex arrays are actually set
-	glBindAttribLocation(prgName, POS_ATTRIB_IDX, "vert");
+	glBindAttribLocation(prgName, POS_ATTRIB_IDX, "vertpos_modelspace");
     
-    glBindAttribLocation(prgName, TEXCOORD_ATTRIB_IDX, "vertTexCoord");
-	
+    glBindAttribLocation(prgName, TEXCOORD_ATTRIB_IDX, "vertuv");
+
+	glBindAttribLocation(prgName, NORMAL_ATTRIB_IDX, "vertnormal_modelspace");
+
 	//////////////////////////////////////
 	// Specify and compile VertexShader //
 	//////////////////////////////////////
@@ -495,7 +527,7 @@ static GLsizei GetGLTypeSize(GLenum type)
         const char * path = [filePathName cStringUsingEncoding:NSASCIIStringEncoding];
         
         // Read our .obj file
-        bool res = loadAssImp(path, camElements, camPositions, camTexcoords, camNormals);
+        bool res = loadAssImp(path, shdElements, shdPositions, shdTexcoords, shdNormals);
         if(!res)
 		{
 			NSLog(@"Could not load obj file");
@@ -524,10 +556,10 @@ static GLsizei GetGLTypeSize(GLenum type)
 		demoSource *vtxSource = NULL;
 		demoSource *frgSource = NULL;
 		
-		filePathName = [[NSBundle mainBundle] pathForResource:@"camera" ofType:@"vsh"];
+		filePathName = [[NSBundle mainBundle] pathForResource:@"shade" ofType:@"vsh"];
 		vtxSource = srcLoadSource([filePathName cStringUsingEncoding:NSASCIIStringEncoding]);
 		
-		filePathName = [[NSBundle mainBundle] pathForResource:@"camera" ofType:@"fsh"];
+		filePathName = [[NSBundle mainBundle] pathForResource:@"shade" ofType:@"fsh"];
 		frgSource = srcLoadSource([filePathName cStringUsingEncoding:NSASCIIStringEncoding]);
 		
 		// Build Program
@@ -537,25 +569,35 @@ static GLsizei GetGLTypeSize(GLenum type)
 		srcDestroySource(vtxSource);
 		srcDestroySource(frgSource);
 		
-		self.characterModelUniformIdx = glGetUniformLocation(self.characterPrgName, "model");
-		if(self.characterModelUniformIdx < 0)
+        self.mvpUniformIdx = glGetUniformLocation(self.characterPrgName, "mvp");
+		if(self.mvpUniformIdx < 0)
 		{
 			NSLog(@"No model in camera shader");
 		}
-        self.characterCameraUniformIdx = glGetUniformLocation(self.characterPrgName, "camera");
-		if(self.characterCameraUniformIdx < 0)
+		self.modelUniformIdx = glGetUniformLocation(self.characterPrgName, "model");
+		if(self.modelUniformIdx < 0)
+		{
+			NSLog(@"No model in camera shader");
+		}
+        self.viewlUniformIdx = glGetUniformLocation(self.characterPrgName, "view");
+		if(self.viewlUniformIdx < 0)
 		{
 			NSLog(@"No camera in camera shader");
+		}
+        self.lightUniformIdx = glGetUniformLocation(self.characterPrgName, "lightpos_worldspace");
+		if(self.lightUniformIdx < 0)
+		{
+			NSLog(@"No light in camera shader");
 		}
         
         ////////////////////////////////////////////////
 		// Set up camera state that will never change //
 		////////////////////////////////////////////////
 		
-        camera.setFieldOfView(45.0f);
-        camera.setNearAndFarPlanes(0.1f, 1000.0f);
-        camera.setPosition(glm::vec3(7,90,150));
-        camera.lookAt(glm::vec3(0,0,0));
+        shdcamera.setFieldOfView(45.0f);
+        shdcamera.setNearAndFarPlanes(0.1f, 1000.0f);
+        shdcamera.setPosition(glm::vec3(7,90,150));
+        shdcamera.lookAt(glm::vec3(0,0,0));
 
         ////////////////////////////////////////////////
 		// Set up OpenGL state that will never change //

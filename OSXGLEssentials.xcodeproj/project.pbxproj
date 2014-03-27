@@ -26,6 +26,9 @@
 		3A15990711B9DE6C001E7AB5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A15990611B9DE6C001E7AB5 /* QuartzCore.framework */; };
 		3A349C9212CAEA1100B73A51 /* sourceUtil.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A349C9112CAEA1100B73A51 /* sourceUtil.c */; };
 		3A4554AB14BE325400837CC3 /* GLEssentialsGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4554A714BE1FE300837CC3 /* GLEssentialsGLView.m */; };
+		3B2E27B618E4BC1600F593AC /* OpenShadeRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3B2E27B518E4BC1600F593AC /* OpenShadeRenderer.mm */; };
+		3B2E27B918E4BFC600F593AC /* shade.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3B2E27B718E4BFC600F593AC /* shade.fsh */; };
+		3B2E27BA18E4BFC600F593AC /* shade.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 3B2E27B818E4BFC600F593AC /* shade.vsh */; };
 		3B672A5018E0D716003152FD /* uvtemplate.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 3B672A4F18E0D716003152FD /* uvtemplate.bmp */; };
 		3B672A5318E20D92003152FD /* OpenIndexRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3B672A5218E20D92003152FD /* OpenIndexRenderer.mm */; };
 		3B672A6318E31728003152FD /* libassimp.3.0.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B672A6218E31728003152FD /* libassimp.3.0.1.dylib */; };
@@ -55,7 +58,10 @@
 		3BDCA39718E32BB600446355 /* cubelarge.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3BDCA39618E32BB600446355 /* cubelarge.obj */; };
 		3BECD6D718E34A8E004CF1F0 /* tn1.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3BECD6D618E34A8E004CF1F0 /* tn1.obj */; };
 		3BECD6DB18E36ABA004CF1F0 /* cube.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BECD6DA18E36ABA004CF1F0 /* cube.png */; };
-		3BECD6DE18E37A03004CF1F0 /* OpenCameraRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3BECD6DD18E37A03004CF1F0 /* OpenCameraRenderer.mm */; };
+		3BECD6E418E45B7B004CF1F0 /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BECD6E318E45B7B004CF1F0 /* camera.cpp */; };
+		3BECD6EB18E46661004CF1F0 /* OpenCameraRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3BECD6EA18E46661004CF1F0 /* OpenCameraRenderer.mm */; };
+		3BECD6F218E46CE2004CF1F0 /* camera.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3BECD6F018E46CE2004CF1F0 /* camera.fsh */; };
+		3BECD6F318E46CE2004CF1F0 /* camera.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 3BECD6F118E46CE2004CF1F0 /* camera.vsh */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -96,6 +102,10 @@
 		3A349C9112CAEA1100B73A51 /* sourceUtil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sourceUtil.c; path = UtilSrc/sourceUtil.c; sourceTree = "<group>"; };
 		3A4554A614BE1FE300837CC3 /* GLEssentialsGLView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GLEssentialsGLView.h; path = Classes/OSX/GLEssentialsGLView.h; sourceTree = "<group>"; };
 		3A4554A714BE1FE300837CC3 /* GLEssentialsGLView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GLEssentialsGLView.m; path = Classes/OSX/GLEssentialsGLView.m; sourceTree = "<group>"; };
+		3B2E27B418E4BC1600F593AC /* OpenShadeRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenShadeRenderer.h; sourceTree = "<group>"; };
+		3B2E27B518E4BC1600F593AC /* OpenShadeRenderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenShadeRenderer.mm; sourceTree = "<group>"; };
+		3B2E27B718E4BFC600F593AC /* shade.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shade.fsh; path = Shaders/shade.fsh; sourceTree = "<group>"; };
+		3B2E27B818E4BFC600F593AC /* shade.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shade.vsh; path = Shaders/shade.vsh; sourceTree = "<group>"; };
 		3B672A4F18E0D716003152FD /* uvtemplate.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; name = uvtemplate.bmp; path = Resources/uvtemplate.bmp; sourceTree = "<group>"; };
 		3B672A5118E20D92003152FD /* OpenIndexRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenIndexRenderer.h; sourceTree = "<group>"; };
 		3B672A5218E20D92003152FD /* OpenIndexRenderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenIndexRenderer.mm; sourceTree = "<group>"; };
@@ -137,8 +147,12 @@
 		3BDCA39618E32BB600446355 /* cubelarge.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cubelarge.obj; path = Resources/cubelarge.obj; sourceTree = "<group>"; };
 		3BECD6D618E34A8E004CF1F0 /* tn1.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tn1.obj; path = Resources/tn1.obj; sourceTree = "<group>"; };
 		3BECD6DA18E36ABA004CF1F0 /* cube.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cube.png; path = Resources/cube.png; sourceTree = "<group>"; };
-		3BECD6DC18E37A03004CF1F0 /* OpenCameraRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCameraRenderer.h; sourceTree = "<group>"; };
-		3BECD6DD18E37A03004CF1F0 /* OpenCameraRenderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCameraRenderer.mm; sourceTree = "<group>"; };
+		3BECD6E218E45B7B004CF1F0 /* camera.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = camera.hpp; path = UtilSrc/camera.hpp; sourceTree = "<group>"; };
+		3BECD6E318E45B7B004CF1F0 /* camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = camera.cpp; path = UtilSrc/camera.cpp; sourceTree = "<group>"; };
+		3BECD6E918E46661004CF1F0 /* OpenCameraRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCameraRenderer.h; sourceTree = "<group>"; };
+		3BECD6EA18E46661004CF1F0 /* OpenCameraRenderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCameraRenderer.mm; sourceTree = "<group>"; };
+		3BECD6F018E46CE2004CF1F0 /* camera.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = camera.fsh; path = Shaders/camera.fsh; sourceTree = "<group>"; };
+		3BECD6F118E46CE2004CF1F0 /* camera.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = camera.vsh; path = Shaders/camera.vsh; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* OSXGLEssentials-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OSXGLEssentials-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -168,8 +182,10 @@
 				3A0BF471177B8C1F00A6C4D7 /* GLEssentialsWindowController.m */,
 				3A1598D611B9DDC5001E7AB5 /* OpenGLRenderer.h */,
 				3A1598D511B9DDC5001E7AB5 /* OpenGLRenderer.m */,
-				3BECD6DC18E37A03004CF1F0 /* OpenCameraRenderer.h */,
-				3BECD6DD18E37A03004CF1F0 /* OpenCameraRenderer.mm */,
+				3B2E27B418E4BC1600F593AC /* OpenShadeRenderer.h */,
+				3B2E27B518E4BC1600F593AC /* OpenShadeRenderer.mm */,
+				3BECD6E918E46661004CF1F0 /* OpenCameraRenderer.h */,
+				3BECD6EA18E46661004CF1F0 /* OpenCameraRenderer.mm */,
 				3BDCA39118E326AE00446355 /* OpenMapRenderer.h */,
 				3BDCA39218E326AE00446355 /* OpenMapRenderer.mm */,
 				3BDCA18718E3228C00446355 /* OpenAssimpRenderer.h */,
@@ -236,6 +252,8 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				3BECD6E218E45B7B004CF1F0 /* camera.hpp */,
+				3BECD6E318E45B7B004CF1F0 /* camera.cpp */,
 				3B84BA0718E0756800E475EF /* objloader.hpp */,
 				3B84BA0618E0756800E475EF /* objloader.cpp */,
 				3B84BA0918E0756800E475EF /* vboindexer.hpp */,
@@ -289,6 +307,10 @@
 		3A1598C211B9DD84001E7AB5 /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
+				3B2E27B818E4BFC600F593AC /* shade.vsh */,
+				3B2E27B718E4BFC600F593AC /* shade.fsh */,
+				3BECD6F118E46CE2004CF1F0 /* camera.vsh */,
+				3BECD6F018E46CE2004CF1F0 /* camera.fsh */,
 				3B92A1D018DCC6F100D3F368 /* texture1.vsh */,
 				3B92A1CF18DCC6F100D3F368 /* texture1.fsh */,
 				3B92A1C918DC95D800D3F368 /* texture.vsh */,
@@ -371,9 +393,11 @@
 				3B92A1CB18DC95D800D3F368 /* texture.vsh in Resources */,
 				3B672A5018E0D716003152FD /* uvtemplate.bmp in Resources */,
 				3A1598E211B9DDF3001E7AB5 /* reflect.vsh in Resources */,
+				3B2E27BA18E4BFC600F593AC /* shade.vsh in Resources */,
 				3BECD6D718E34A8E004CF1F0 /* tn1.obj in Resources */,
 				3A1598E311B9DDF3001E7AB5 /* reflect.fsh in Resources */,
 				3B92A1AF18DB7CF200D3F368 /* cube.fsh in Resources */,
+				3BECD6F218E46CE2004CF1F0 /* camera.fsh in Resources */,
 				3A1598E411B9DDF3001E7AB5 /* character.vsh in Resources */,
 				3A1598E511B9DDF3001E7AB5 /* character.fsh in Resources */,
 				3B92A1C718DC958B00D3F368 /* texture.tga in Resources */,
@@ -384,6 +408,8 @@
 				3B92A1D218DCC6F100D3F368 /* texture1.vsh in Resources */,
 				3A1598EB11B9DE0A001E7AB5 /* InfoPlist.strings in Resources */,
 				3BDCA39718E32BB600446355 /* cubelarge.obj in Resources */,
+				3B2E27B918E4BFC600F593AC /* shade.fsh in Resources */,
+				3BECD6F318E46CE2004CF1F0 /* camera.vsh in Resources */,
 				3B92A1CA18DC95D800D3F368 /* texture.fsh in Resources */,
 				3B92A1B018DB7CF200D3F368 /* cube.vsh in Resources */,
 				3B92A1A118DB6C9A00D3F368 /* triangle.fsh in Resources */,
@@ -409,14 +435,15 @@
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				3A0BF47A177BC80300A6C4D7 /* GLEssentialsFullscreenWindow.m in Sources */,
 				3A1598CE11B9DDB0001E7AB5 /* vectorUtil.c in Sources */,
+				3BECD6EB18E46661004CF1F0 /* OpenCameraRenderer.mm in Sources */,
 				3A1598D011B9DDB0001E7AB5 /* modelUtil.c in Sources */,
 				3B92A19E18DB3CE000D3F368 /* OpenTriangleRenderer.m in Sources */,
 				3B672A5318E20D92003152FD /* OpenIndexRenderer.mm in Sources */,
 				3A0BF472177B8C1F00A6C4D7 /* GLEssentialsWindowController.m in Sources */,
 				3BDCA18918E3228C00446355 /* OpenAssimpRenderer.mm in Sources */,
+				3B2E27B618E4BC1600F593AC /* OpenShadeRenderer.mm in Sources */,
 				3A1598D111B9DDB0001E7AB5 /* matrixUtil.c in Sources */,
 				3A1598D211B9DDB0001E7AB5 /* imageUtil.m in Sources */,
-				3BECD6DE18E37A03004CF1F0 /* OpenCameraRenderer.mm in Sources */,
 				3B92A1C518DC93BC00D3F368 /* OpenTextureRenderer.mm in Sources */,
 				3A1598DB11B9DDC5001E7AB5 /* OpenGLRenderer.m in Sources */,
 				3B92A1B318DB887900D3F368 /* OpenMatrixRenderer.mm in Sources */,
@@ -425,6 +452,7 @@
 				3B84BA0B18E0756800E475EF /* vboindexer.cpp in Sources */,
 				3B92A1BF18DC82FB00D3F368 /* OpenCubeRenderer.mm in Sources */,
 				3A4554AB14BE325400837CC3 /* GLEssentialsGLView.m in Sources */,
+				3BECD6E418E45B7B004CF1F0 /* camera.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

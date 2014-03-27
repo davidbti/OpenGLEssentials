@@ -1,4 +1,4 @@
-in vec4  inPosition;
+in vec3  inPosition;
 in vec2  inTexcoord;
 out vec2 varTexcoord;
 
@@ -9,7 +9,7 @@ void main()
 {
 	// Transform the vertex by the model view projection matrix so
 	// the polygon shows up in the right place
-	gl_Position	= modelViewProjectionMatrix * inPosition;
+	gl_Position	= modelViewProjectionMatrix * vec4(inPosition, 1);
 	
 	// Pass the unmodified texture coordinate from the vertex buffer
 	// directly down to the rasterizer.

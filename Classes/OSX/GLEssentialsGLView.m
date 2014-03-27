@@ -46,6 +46,7 @@
  */
 
 #import "GLEssentialsGLView.h"
+#import "OpenShadeRenderer.h"
 #import "OpenCameraRenderer.h"
 #import "OpenMapRenderer.h"
 #import "OpenAssimpRenderer.h"
@@ -67,7 +68,7 @@
 
 @implementation GLEssentialsGLView
 
-OpenCameraRenderer* m_renderer;
+OpenShadeRenderer* m_renderer;
 
 - (CVReturn) getFrameForTime:(const CVTimeStamp*)outputTime
 {
@@ -189,7 +190,7 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink,
 	
 	// Init our renderer.  Use 0 for the defaultFBO which is appropriate for
 	// OSX (but not iOS since iOS apps must create their own FBO)
-	m_renderer = [[OpenCameraRenderer alloc] initWithDefaultFBO:0];
+	m_renderer = [[OpenShadeRenderer alloc] initWithDefaultFBO:0];
 }
 
 - (void) reshape
