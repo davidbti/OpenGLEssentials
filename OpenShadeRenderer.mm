@@ -100,8 +100,15 @@ Camera shdcamera;
     glm::mat4 model      = glm::mat4(1.0f);  // Changes for each model !
     
     shdcamera.setViewportAspectRatio((float)self.viewWidth / (float)self.viewHeight);
-    shdcamera.offsetPosition(0.5f * -shdcamera.right());
-    shdcamera.lookAt(glm::vec3(0,0,0));
+    if (shdcamera.position().y < 126) {
+        shdcamera.offsetPosition(0.3f * -shdcamera.right());
+        shdcamera.offsetPosition(0.2f * shdcamera.up());
+        shdcamera.offsetPosition(0.005f * -shdcamera.forward());
+        shdcamera.lookAt(glm::vec3(0,0,0));
+    } else {
+        shdcamera.offsetPosition(0.3f * -shdcamera.right());
+        shdcamera.lookAt(glm::vec3(0,0,0));
+    }
     
     glm::mat4 mvp        = shdcamera.matrix() * model;
     
@@ -111,7 +118,7 @@ Camera shdcamera;
     glUniformMatrix4fv(self.modelUniformIdx, 1, GL_FALSE, &model[0][0]);
     glUniformMatrix4fv(self.viewlUniformIdx, 1, GL_FALSE, &view[0][0]);
     
-    glm::vec3 lightPos = glm::vec3(-150,90,.71);
+    glm::vec3 lightPos = glm::vec3(-152,260,-5.8);
     glUniform3f(self.lightUniformIdx, lightPos.x, lightPos.y, lightPos.z);
 	
     // Bind the texture to be used
@@ -596,7 +603,7 @@ static GLsizei GetGLTypeSize(GLenum type)
 		
         shdcamera.setFieldOfView(45.0f);
         shdcamera.setNearAndFarPlanes(0.1f, 1000.0f);
-        shdcamera.setPosition(glm::vec3(7,90,150));
+        shdcamera.setPosition(glm::vec3(7,11,150));
         shdcamera.lookAt(glm::vec3(0,0,0));
 
         ////////////////////////////////////////////////

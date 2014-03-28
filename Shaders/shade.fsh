@@ -17,7 +17,7 @@ void main(){
     // Light emission properties
 	// You probably want to put them as uniforms
 	vec3 lightColor = vec3(1,1,1);
-	float lightPower = 50.0f;
+	float lightPower = 40000.0f;
 	
 	// Material properties
 	vec3 materialDiffuseColor = texture( diffuseTexture, fraguv ).rgb;
@@ -47,17 +47,7 @@ void main(){
 	//  - Looking into the reflection -> 1
 	//  - Looking elsewhere -> < 1
 	float cosAlpha = clamp( dot( E,R ), 0,1 );
-    /*
-	color =
-    // Ambient : simulates indirect lighting
-    materialAmbientColor +
-    // Diffuse : "color" of the object
-    materialDiffuseColor * lightColor * lightPower * cosTheta / (distance*distance) +
-    // Specular : reflective highlight, like a mirror
-    materialSpecularColor * lightColor * lightPower * pow(cosAlpha,5) / (distance*distance);
-    */
     
-    distance = 9.0f;
     color =
     // Ambient : simulates indirect lighting
     materialAmbientColor +
@@ -65,8 +55,4 @@ void main(){
     materialDiffuseColor * lightColor * lightPower * cosTheta / (distance*distance) +
     // Specular : reflective highlight, like a mirror
     materialSpecularColor * lightColor * lightPower * pow(cosAlpha,5) / (distance*distance);
-    
-    //color = texture( diffuseTexture, fraguv ).rgb;
-    
-    
 }
